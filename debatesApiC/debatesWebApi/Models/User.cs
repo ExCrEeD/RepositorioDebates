@@ -16,5 +16,10 @@ namespace debatesWebApi.Models
         public String Email { get; set; }
         public String Password { get; set; }
         public String Rol { get; set; }
+
+        public void setPassword(string password)
+        {
+            this.Password = password;
+        }
     }
 }

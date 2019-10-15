@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 
 namespace debatesWebApi.Controllers
 {
@@ -19,7 +20,7 @@ namespace debatesWebApi.Controllers
     {
         DataStore db = new DataStore();
         // GET api/user
-        public User GetLogin([FromUri]User logincredentials)
+        public object GetLogin([FromUri]User logincredentials)
         {
             var query = from a in db.Users
                        where a.Email == logincredentials.Email
@@ -32,12 +33,24 @@ namespace debatesWebApi.Controllers
             else
             {
                 user = query.First();
+               
                 if (user.Password != logincredentials.Password)
                 {
                     user = null; 
                 }
+                else
+                {
+                    user.setPassword("");
+                }
             }
             return user;
+        }
+
+        public object getCrearUsuario([FromUri]User usuario)
+        {
+            db.Users.Add(usuario);
+            db.SaveChanges();            
+            return usuario;
         }
 
         public MenuRoles getRolMenu(string rol)
@@ -81,14 +94,45 @@ namespace debatesWebApi.Controllers
         // POST api/user
         public void Post([FromBody]User usuario)
         {
+
             db.Users.Add(usuario);
             db.SaveChanges();
         }
 
-
-        // PUT api/user
-        public void Put(int id, [FromBody]string value)
+        public bool getRecovery(string email)
         {
+            bool response = false;
+            var query = from a in db.Users
+                    where a.Email == email
+                    select a;
+
+            User user;
+            if (query.Count() > 0)
+            {
+                user = query.First();
+
+                string body = "<p>Estimado/a " + user.Name + ":</p><p>Ingresa al siguiente link recuperar tu contraseña:</p>"
+                + "<p><a href='http://localhost:4200/Recovery/" + user.Id + "'>http://localhost:4200/Recovery/" + user.Id + "</a></p>";
+
+                this.getEnviarEmail(user.Email, "Recuperación de contraseña", body);
+                response = true;
+            }
+
+            return response;
+        }
+
+        public object getChangePassword(int id, string password)
+        {
+            var query = (from a in db.Users
+                        where a.Id == id
+                         select a).First();
+            User user = query;
+            
+            user.Password = password;
+
+            db.SaveChanges();
+
+            return true;
         }
 
         // DELETE api/user
@@ -133,6 +177,38 @@ namespace debatesWebApi.Controllers
                 return answer;
             }
             return answer;
+        }
+
+        public void getEnviarEmail(string email, string asunto, string body)
+        {
+            MailMessage mensaje = new MailMessage();
+
+            mensaje.To.Add(email);
+            mensaje.Subject = asunto;
+            mensaje.SubjectEncoding = System.Text.Encoding.UTF8;
+
+            mensaje.Body = body;
+            mensaje.BodyEncoding = System.Text.Encoding.UTF8;
+            mensaje.IsBodyHtml = true;
+            mensaje.From = new MailAddress("politrivia@outlook.com");
+
+            SmtpClient cliente = new SmtpClient();
+
+            cliente.Credentials = new System.Net.NetworkCredential("politrivia@outlook.com", "Politecnico123*");
+
+            cliente.Port = 587;
+            cliente.EnableSsl = true;
+            cliente.Host = "SMTP.Office365.com";
+
+            try
+            {
+                cliente.Send(mensaje);
+                cliente.Dispose();
+            }
+            catch (SmtpException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
