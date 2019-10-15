@@ -8,7 +8,10 @@
     height: 18px;
 }
 
-.btn-d-menu{
+.btn-d-menu,
+.btn-d-menu:hover,
+.btn-d-menu.uk-active,
+.uk-parent a.btn-d-menu{
     font-size: 12px;
     line-height: 1;
     border: none;
@@ -17,13 +20,6 @@
 }
 
 #nav-offcanvas{
-    background-color: #222d32;
-}
-
-.btn-d-menu:hover{
-    font-size: 12px;
-    line-height: 1;
-    border: none;
     background-color: #222d32;
 }
 

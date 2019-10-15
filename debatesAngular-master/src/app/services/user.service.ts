@@ -21,13 +21,23 @@ export class UserService {
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 
-  public add(user) {
-    return this.http.post(this.accessPointUrl,user, {headers: this.headers});
+  public add(usuario) {
+    return this.http.get(this.accessPointUrl+'/getCrearUsuario', {headers: this.headers, params:usuario});
   }
   
   public login(credentials)
   {
-    return this.http.get(this.accessPointUrl+'/getlogin',{headers: this.headers,params:credentials}); 
+    return this.http.get(this.accessPointUrl+'/getlogin',{headers: this.headers, params:credentials}); 
+  }
+
+  public recovery(email)
+  {
+    return this.http.get(this.accessPointUrl+'/getRecovery/?email='+email,{headers: this.headers}); 
+  }
+
+  public changePassword(params)
+  {
+    return this.http.get(this.accessPointUrl+"/getChangePassword/?id="+params.id+"&password="+params.password, {headers: this.headers}); 
   }
 
   public deleteAccount(password)

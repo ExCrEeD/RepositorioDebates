@@ -1,75 +1,36 @@
-<section class="principalBanner">
-  <div class="contentLogin">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">                
-          <img src="../../../assets/Images/icono-politrivia.svg" alt="Logo politrivia" class="icon-banner">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse pull-left" id="navbarSupportedContent ">
-          <!-- <ul class="nav navbar-nav pull-xs-right">
-              <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="/login" routerLinkActive="login">Ingresa</a>
-              </li>
-              <li class="nav-item">
-                      <a class="nav-link" href="register.html">Registrate</a>
-              </li>
-          </ul> -->
+<div class="d-flex align-items-center justify-content-end px-md-5 px-2 mt-5">
+  <form [formGroup]="loginForm" novalidate class="formLogin animated bounceInRight fast mb-5">
+    <div class="loginContent">
+      <h1 class="titleForm">Login</h1>
+      <hr class="line">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Usuario</label>
+        <input type="text" formControlName="Email" name="uname" class="uk-input" id="exampleInputEmail1"
+          aria-describedby="emailHelp" placeholder="Ingresa tu usuario o email">
+        <div class="uk-text-danger uk-text-small pl-1 uk-padding-remove-bottom"
+          *ngIf="loginForm.get('Email').hasError('required') && loginForm.get('Email').touched">
+          Correo electrónico requerido</div>
+        <div class="uk-text-danger uk-text-small pl-1 uk-padding-remove-bottom"
+          *ngIf="loginForm.get('Email').hasError('email') && loginForm.get('Email').touched">
+          Ingresa un correo electrónico válido</div>
       </div>
-    </nav>
-    <div class="center">			
-      <form [formGroup]="loginForm" novalidate autocomplete="off" class="formLogin animated bounceInDown fast">
-          <div class="loginContent">
-              <h1 class="titleForm">Login</h1>
-              <hr class="line">
-              <div class="form-group">
-                  <label for="exampleInputEmail1">Usuario</label>
-                  <input type="text" formControlName="Email" name="uname" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingresa tu usuario o email">
-                  <div class="error" *ngIf="loginForm.get('Email').hasError('required') && loginForm.get('Email').touched">Correo electrónico requerido</div>
-                  <div class="error" *ngIf="loginForm.get('Email').hasError('email') && loginForm.get('Email').touched">Ingrese un correo electrónico valido</div>  
-              </div>
-              <div class="form-group">
-                  <label for="exampleInputPassword1">Contraseña</label>
-                  <input type="password"  class="form-control" id="exampleInputPassword1" placeholder="Ingresa tu contraseña" name="Password" formControlName="Password">                
-                  <div class="error" *ngIf="loginForm.get('Password').hasError('required') && loginForm.get('Password').touched">No se ha ingresado una contraseña</div>
-                </div>
-              <div class="form-check">
-                  <a href="register.html">Registrate!</a>
-              </div>
-              <hr>  
-              <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" class="btn btn-primary"(click)="loginValidate()">Ingresar</button>
-          </div>
-      </form>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña</label>
+        <input type="password" class="uk-input" id="exampleInputPassword1" placeholder="Ingresa tu contraseña"
+          name="Password" formControlName="Password">
+        <div class="uk-text-danger uk-text-small pl-1 uk-padding-remove-bottom"
+          *ngIf="loginForm.get('Password').hasError('required') && loginForm.get('Password').touched">No has
+          ingresado una contraseña</div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid" class="btn btn-primary"
+        (click)="loginValidate()">Ingresar</button>
+      <hr>
+      <div class="uk-text-center">
+        <a class="uk-text-primary" (click)="this.tools.nav('RegisterUser')">Regístrate</a>
+      </div>
+      <div class="uk-text-center">
+        <a class="uk-text-primary" (click)="this.tools.nav('Recovery')">¿Has olvidado tu contraseña?</a>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- <div class="container" style="background-image: url(src/assets/images/LoginBackGround.jpg)"> -->
-<!--   <div class="container">
-      <div class="row justify-content-center align-items-center minh-100">
-        <div class="col-md-5">
-            <h4 align="center">Ingresar</h4>  
-              <form [formGroup]="loginForm" novalidate autocomplete="off">
-                  <div class="container">
-  
-                    <label for="Email" ><b>Direccion de correo</b></label>
-                    <input type="text" formControlName="Email" name="uname" >
-                    <div class="error" *ngIf="loginForm.get('Email').hasError('required') && loginForm.get('Email').touched">Correo electrónico requerido</div>
-                    <div class="error" *ngIf="loginForm.get('Email').hasError('email') && loginForm.get('Email').touched">Ingrese un correo electrónico valido</div> 
-  
-                    <label for="Password"><b>Contraseña</b></label>
-                    <input type="password"  name="Password" formControlName="Password">                
-                    <div class="error" *ngIf="loginForm.get('Password').hasError('required') && loginForm.get('Password').touched">No se ha ingresado una contraseña</div>
-                    <button type="submit" class="btn btn-success" [disabled]="loginForm.invalid"class="btn btn-success"(click)="loginValidate()">Ingresar</button>
-                    
-                  </div>         
-              </form>
-              <br>
-        </div>
-      </div>
-  </div> -->
-  
+  </form>
+</div>

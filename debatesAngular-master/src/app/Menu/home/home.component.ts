@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   public showUserOption = false;
   public showDeleteAccount = false;
   public showRegisterUser = false;
+  public showChangePassword = false;
   public user = "";
   constructor(private userService:UserService,private router: Router,private menu:Menu) {
      this.user = userService.getUserName(); 
@@ -34,6 +35,8 @@ export class HomeComponent implements OnInit {
     this.showUserOption = false;
     this.showDeleteAccount = false;
     this.showRegisterUser = false;
+    this.showChangePassword = false;
+    
 
     switch(componente)
     {
@@ -43,6 +46,7 @@ export class HomeComponent implements OnInit {
         case 'User':{this.showUserOption=true;break;}
         case 'DeleteAccount':{this.showDeleteAccount=true;break;}
         case 'RegisterUser':{this.showRegisterUser=true;}break;
+        case 'CambiarClave':{this.showChangePassword=true;}break;
     }
   };
 
