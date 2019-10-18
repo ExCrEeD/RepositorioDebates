@@ -24,6 +24,10 @@ export class UserService {
   public add(usuario) {
     return this.http.get(this.accessPointUrl+'/getCrearUsuario', {headers: this.headers, params:usuario});
   }
+
+  public updateUser(usuario) {
+    return this.http.get(this.accessPointUrl+'/getUpdateUser', {headers: this.headers, params:usuario});
+  }
   
   public login(credentials)
   {
@@ -88,6 +92,12 @@ export class UserService {
   {
     this.loginState = false;
     this.storage.set('local_storage',  this.loginState );
+  }
+
+  public getDataUser()
+  {
+    return this.storage.get('local_storage_user');
+    
   }
 
   public getMenu()

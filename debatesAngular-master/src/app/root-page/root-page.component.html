@@ -11,6 +11,11 @@
     </div>
   </nav>
   <app-login *ngIf=showLogin></app-login>
-  <app-register *ngIf=showRegister></app-register>
+  <div *ngIf=showRegister class="d-flex align-items-center justify-content-end px-md-5 px-2 mt-5">
+    <div class="formLogin animated bounceInRight fast mb-5">
+      <app-register></app-register>
+    </div>
+  </div>
+
   <app-recovery *ngIf=showRecovery></app-recovery>
 </section>

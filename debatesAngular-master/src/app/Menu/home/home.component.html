@@ -59,11 +59,14 @@
         <div class="text-center">
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
             <li class="uk-parent">
-              <a class="px-4 py-3 uk-text-left btn-d-menu d-flex align-items-center justify-content-between"><span class="d-flex align-items-center"><i class="fas fa-cog fa-2x mr-3"></i> Configurar</span></a>
+              <a class="px-4 py-3 uk-text-left btn-d-menu d-flex align-items-center justify-content-between"><span
+                  class="d-flex align-items-center"><i class="fas fa-cog fa-2x mr-3"></i> Configurar</span></a>
               <ul class="uk-nav-sub">
-                <li><a class="btn-d-menu px-4 py-3 uk-text-left" (click)="navigateComponent('CambiarClave')"><i class="fas fa-key mr-2"></i>
+                <li><a class="btn-d-menu px-4 py-3 uk-text-left" (click)="navigateComponent('CambiarClave')"><i
+                      class="fas fa-key mr-2"></i>
                     Cambiar clave</a></li>
-                <li><a class="btn-d-menu px-4 py-3 uk-text-left" (click)="navigateComponent('ActualizarDatos')"><i class="fas fa-user-edit mr-2"></i> Actualizar
+                <li><a class="btn-d-menu px-4 py-3 uk-text-left" (click)="navigateComponent('ActualizarDatos')"><i
+                      class="fas fa-user-edit mr-2"></i> Actualizar
                     datos</a></li>
               </ul>
             </li>
@@ -181,8 +184,13 @@
         <app-register-user *ngIf=showRegisterUser></app-register-user>
         <div class="row" *ngIf=showChangePassword>
           <div class="col-12 col-md-6 offset-md-3 px-4">
-              <h3 class="my-4">Actualiza tu contraseña</h3>
+            <h3 class="my-4">Actualiza tu contraseña</h3>
             <app-change-password></app-change-password>
+          </div>
+        </div>
+        <div class="row" *ngIf=showEditUser>
+          <div class="col-12 col-md-6 offset-md-3 px-4">
+            <app-register></app-register>
           </div>
         </div>
       </div>

@@ -135,6 +135,21 @@ namespace debatesWebApi.Controllers
             return true;
         }
 
+        public object getUpdateUser([FromUri]User usuario)
+        {
+            var query = (from a in db.Users
+                         where a.Id == usuario.Id
+                         select a).First();
+            User user = query;
+
+            user.Name = usuario.Name;
+            user.SecondName = usuario.SecondName;
+
+            db.SaveChanges();
+            user.setPassword("");
+            return user;
+        }
+
         // DELETE api/user
         public Response Delete(int id,string password)
         {
