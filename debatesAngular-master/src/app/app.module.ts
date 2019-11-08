@@ -35,6 +35,7 @@ import { LocalStorageService } from './Services/local-storage.service';
 import { NavPageService } from './Services/nav-page.service';
 import { RecoveryComponent } from './recovery/recovery.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { PoliStreamComponent } from './poli-stream/poli-stream.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     RootPageComponent,
     RecoveryComponent,
     ChangePasswordComponent,
+    PoliStreamComponent,
   ],
   imports: [
     BrowserModule,
