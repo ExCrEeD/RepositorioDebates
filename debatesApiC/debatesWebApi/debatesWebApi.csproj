@@ -198,6 +198,7 @@
     <Compile Include="Controllers\RatingController.cs" />
     <Compile Include="Controllers\userController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="DTO\DTODebate.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -209,6 +210,10 @@
     <Compile Include="Migrations\201905290259394_MigracionBaseDeDatos.Designer.cs">
       <DependentUpon>201905290259394_MigracionBaseDeDatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911171654022_images.cs" />
+    <Compile Include="Migrations\201911171654022_images.Designer.cs">
+      <DependentUpon>201911171654022_images.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\Debates.cs" />
@@ -217,6 +222,7 @@
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilidades\Utilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -296,6 +302,9 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile2.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -350,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905290259394_MigracionBaseDeDatos.resx">
       <DependentUpon>201905290259394_MigracionBaseDeDatos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911171654022_images.resx">
+      <DependentUpon>201911171654022_images.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

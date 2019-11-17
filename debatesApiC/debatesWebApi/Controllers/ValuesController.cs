@@ -1,5 +1,9 @@
-﻿using System;
+﻿using debatesWebApi.DTO;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,20 +14,25 @@ namespace debatesWebApi.Controllers
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public void Get()
         {
-            return new string[] { "value1", "value2" };
+
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public byte[] Get(int id)
         {
-            return "value";
+            Image imageIn = Image.FromFile("C:\\Users\\ExCrEeD\\Documents\\RepositorioDebates\\debatesApiC\\debatesWebApi\\images\\accent.png");
+            return Utilidades.Utilidades.ImageToByteArray(imageIn);
+
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]DTODebate newDebate)
         {
+            Image imagendebate = Utilidades.Utilidades.byteArrayToImage(newDebate.ImageByteArray);
+            string imagePath = @AppDomain.CurrentDomain.BaseDirectory + "images\\" + Utilidades.Utilidades.GetRandomString() + "." + newDebate.extensionImage;
+            imagendebate.Save(imagePath, newDebate.extensionImage.ToUpper() == "PNG" ? ImageFormat.Png : ImageFormat.Png);
         }
 
         // PUT api/values/5

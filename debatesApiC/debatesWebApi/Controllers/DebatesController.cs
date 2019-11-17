@@ -1,7 +1,10 @@
 ﻿using debatesWebApi.Context;
+using debatesWebApi.DTO;
 using debatesWebApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -40,6 +43,7 @@ namespace debatesWebApi.Controllers
                             FechaPublicacion = a.FechaPublicacion,
                             FechaVencimiento = a.FechaVencimiento,
                             Estado = a.Estado,
+                            Image = a.Image,
                             Rate = (from c in db.Ratings where c.DebateId == a.Id && c.CommentId == 0 && c.AutorId == idUsuario select c.Rate).FirstOrDefault(),
                             RatingCount = (from d in db.Ratings where d.DebateId == a.Id && d.CommentId == 0 select d).Count(),
                             //Average = ((from d in db.Ratings where d.DebateId == a.Id && d.CommentId == 0 select d).Count() ==0)?0:(from d in db.Ratings where d.DebateId == a.Id && d.CommentId == 0 select d.Rate).Sum() /
@@ -49,7 +53,7 @@ namespace debatesWebApi.Controllers
         }
 
         // POST api/debates
-        public Response Post([FromBody]Debates newDebate)
+        public Response Post([FromBody]DTODebate newDebate)
         {
             Response answer = new Response();
             try
@@ -64,8 +68,19 @@ namespace debatesWebApi.Controllers
                 }
                 else
                 {
-                    newDebate.FechaPublicacion = DateTime.Now;
-                    db.Debates.Add(newDebate);
+                    Debates debate = new Debates(){ Autor= newDebate.Autor, Titulo = newDebate.Titulo,
+                        Tema = newDebate.Tema,FechaVencimiento = newDebate.FechaVencimiento
+                      };
+                    if (newDebate.ImageByteArray.Length > 0)
+                    {
+                        Image imagendebate = Utilidades.Utilidades.byteArrayToImage(newDebate.ImageByteArray);
+                        string imageName = "images\\" + Utilidades.Utilidades.GetRandomString() + "." + newDebate.extensionImage;
+                        string imagePath = @AppDomain.CurrentDomain.BaseDirectory + imageName;
+                        imagendebate.Save(imagePath, newDebate.extensionImage.ToUpper() == "PNG" ? ImageFormat.Png : ImageFormat.Png);
+                        debate.Image = imageName;
+                        debate.FechaPublicacion = DateTime.Now;
+                    }
+                    db.Debates.Add(debate);
                     db.SaveChanges();
                     answer.State = 0;
                     answer.Message = "Debate subido correctamente";

@@ -18,6 +18,8 @@ namespace debatesWebApi.Models
         public int Autor { get; set; }
         public User UserFk { get; set; }
         public bool Estado { get; set;}
+        public string Image { get; set; }
+
         [Column(TypeName = "datetime2")]
         public DateTime? FechaPublicacion { get; set;}
         [Column(TypeName = "datetime2")]
