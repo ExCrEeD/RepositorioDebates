@@ -19,6 +19,13 @@ import { ReportsComponent } from './Menu/reports/reports.component';
 import { ScrollDebatesComponent } from './Menu/Scroll/scroll-debates/scroll-debates.component';
 import { DebatesInScrollComponent } from './Menu/Scroll/debates-in-scroll/debates-in-scroll.component';
 import { RegisterComponent } from './register/register.component';
+import { PoliStreamComponent } from './poli-stream/poli-stream.component';
+import { DeleteAccountComponent } from './Menu/User/delete-account/delete-account.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CommentsComponent } from './Menu/Scroll/comments/comments.component';
+import { RecoveryComponent } from './recovery/recovery.component';
+
+
 /* Modelos */
 import { User } from './Model/user';
 import { Response } from './Model/response';
@@ -29,13 +36,9 @@ import { Rating } from './Model/rating';
 import { UserService } from './Services/user.service';
 import { DebateService } from './Services/debate.service';
 import { CommentService } from './Services/comment.service';
-import { CommentsComponent } from './Menu/Scroll/comments/comments.component';
-import { DeleteAccountComponent } from './Menu/User/delete-account/delete-account.component';
 import { LocalStorageService } from './Services/local-storage.service';
 import { NavPageService } from './Services/nav-page.service';
-import { RecoveryComponent } from './recovery/recovery.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { PoliStreamComponent } from './poli-stream/poli-stream.component';
+
 
 @NgModule({
   declarations: [

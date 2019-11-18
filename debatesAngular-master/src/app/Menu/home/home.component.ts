@@ -20,7 +20,8 @@ export class HomeComponent implements OnInit {
   public showEditUser = false;
   public showStream = false;
   public user = "";
-  constructor(private userService:UserService,private router: Router,private menu:Menu) {
+   public menu:Menu;
+  constructor(public userService:UserService,public router: Router) {
      this.user = userService.getUserName(); 
      this.menu = userService.getMenu();
    }

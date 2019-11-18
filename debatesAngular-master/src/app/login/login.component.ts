@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private currentUser: User,
     private menuUser: Menu,
-    protected tools: NavPageService
+    public  tools: NavPageService
   ) { }
 
   ngOnInit() {
